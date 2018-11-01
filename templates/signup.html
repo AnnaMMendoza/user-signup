@@ -19,18 +19,18 @@
             <td><label for="password">Password:</label></td>
             <td>
                 <input name="password" type="password" placeholder="Password" value="{{password}}" />
-                {% if password|length != 0 %}
+                <!-- {% if password|length != 0 %} -->
                 <span class="error">{{pass_error}}</span>
-                {% endif %}
+                <!-- {% endif %} -->
             </td>
         </tr>
         <tr>
             <td><label for="passwordv">Verify Password:</label></td>
             <td>
-                <input name="passwordv" type="password" placeholder="Verify Password" value="{{passwordv}}" />
-                {% if passwordv|length != 0 %}
+                <input name="passwordv" type="password" placeholder="Confirm Password" value="{{passwordv}}" />
+                <!-- {% if passwordv|length != 0 %} -->
                 <span class="error">{{passv_error}}</span>
-                {% endif %}
+                <!-- {% endif %} -->
             </td>
         </tr>
         <tr>
