@@ -22,37 +22,33 @@ def validate():
     email_error = ""
     
 # field validation tests - username (no spaces, >3 and <20 characters)
-    if username == "":
+    if not username:
         username_error = "Please enter a User Name"
-        return render_template("signup.html", username=username, username_error=username_error)
+
     if " " in username:
         username_error = "No spaces allowed in User Name"
-        return render_template("signup.html", username=username, username_error=username_error)
+
     if len(username) < 3 or len(username) > 20:
         username_error = "User Name length incorrect. Must be > 3 and < 20 characters"
-        return render_template("signup.html", username=username, username_error=username_error)
-    else:
-        username_error = ""
 
 # password validation - password (no spaces, >3 and <20 characters) & must match password verify
     if password == "":
         pass_error = "Please enter a password"
+
     if " " in password:
         pass_error = "Passwords may not contain spaces"
+
     if len(password) < 3 or len(password) > 20:
         pass_error = "Password length must be > 3 and < 20 characters"
-        password = ""
-        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
         
 # password re-entry MUST match password!
     if passwordv != password:
         passv_error = "Password entries do not match, please re-enter"
         passwordv = ""
-        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
+
     if " " in password:
         passv_error = "Passwords may not contain spaces"
         passwordv = ""
-        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
 
 # email entry validation, optional, entry must have one '@' and a single '.'
     if email == "":
@@ -68,8 +64,7 @@ def validate():
             email_error = "Invalid Email"
         if len(email) > 0 and (len(email) < 3 or len(email) > 20):
             email_error = "Email Length Incorrect, must be > 3 characters and < 20 characters"
-            # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error, email=email, email_error=email_error)
-
+           
 # if all the above tests are passed and there are no errors, this directs the user to the Welcome page    
     if len(username_error)== 0 and len(pass_error)== 0 and len(email_error)== 0:
         return render_template("welcome.html", username=username)
