@@ -9,7 +9,7 @@ app.config['DEBUG'] = True
 def index():
     return render_template("signup.html")
 
-@app.route("/", methods=['POST'])
+@app.route("/signup.html", methods=['POST'])
 def validate():
     username = request.form['username']
     password = request.form['password']
@@ -24,27 +24,30 @@ def validate():
 # field validation tests - username (no spaces, >3 and <20 characters)
     if username == "":
         username_error = "You MUST enter a User Name"
+        return render_template("signup.html", username=username, username_error=username_error)
     
     if " " in username:
         username_error = "ERROR: No spaces allowed"
+        return render_template("signup.html", username=username, username_error=username_error)
     
     if len(username) < 3 or len(username) > 20:
-        username_error = "ERROR: User Name length incorrect. Must be > 3 and < 20 Characters"
-
+        username_error = "ERROR: User Name length incorrect. Must be > 3 and < 20 characters"
         return render_template("signup.html", username=username, username_error=username_error)
 
+    else:
+        username_error = ""
+
 # password validation - password (no spaces, >3 and <20 characters) & must match password verify
-    if " " in password:
-        pass_error = "ERROR: Passwords cannot contain spaces"
-        password = ""
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
-    
     if len(password) < 3 or len(password) > 20:
         pass_error = "ERROR: Password length must be > 3 and < 20 characters"
         password = ""
         return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
-        
 
+    if " " in password:
+        pass_error = "ERROR: Passwords cannot contain spaces"
+        password = ""
+        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
+        
 # password re-entry MUST match password!
     if passwordv != password:
         passv_error = "Password entries do not match, please re-enter"
@@ -71,6 +74,6 @@ def validate():
     if len(username_error)== 0 and len(pass_error)== 0 and len(email_error)== 0:
         return render_template("welcome.html", username=username)
     else:
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error, email=email, email_error=email_error)
+        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error,  email=email, email_error=email_error)
 
 app.run()
