@@ -10,7 +10,7 @@
             <td><label for="username">Username:</label></td>
             <td>
                 <input name="username" type="text" placeholder="User Name" value="{{username}}" />
-                {% if username|length != 0 %}
+                {% if username_error|length != 0 %}
                 <span class="error">{{username_error}}</span>
                 {% endif %}
             </td>
@@ -19,25 +19,25 @@
             <td><label for="password">Password:</label></td>
             <td>
                 <input name="password" type="password" placeholder="Password" value="{{password}}" />
-                <!-- {% if password|length != 0 %} -->
+                {% if pass_error|length != 0 %}
                 <span class="error">{{pass_error}}</span>
-                <!-- {% endif %} -->
+                {% endif %}
             </td>
         </tr>
         <tr>
             <td><label for="passwordv">Verify Password:</label></td>
             <td>
                 <input name="passwordv" type="password" placeholder="Confirm Password" value="{{passwordv}}" />
-                <!-- {% if passwordv|length != 0 %} -->
+                {% if passv_error|length != 0 %}
                 <span class="error">{{passv_error}}</span>
-                <!-- {% endif %} -->
+                {% endif %}
             </td>
         </tr>
         <tr>
             <td><label for="email">Email (optional):</label></td>
             <td>
                 <input name="email" type="text" placeholder="Email" value="{{email}}" />
-                {% if email|length != 0 %}
+                {% if email_error|length != 0 %}
                 <span class="error">{{email_error}}</span>
                 {% endif %}
             </td>
