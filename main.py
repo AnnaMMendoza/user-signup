@@ -24,16 +24,15 @@ def validate():
 # field validation tests - username (no spaces, >3 and <20 characters)
     if username == "":
         username_error = "You MUST enter a User Name"
-        return render_template("signup.html", username=username, username_error=username_error)
+        # return render_template("signup.html", username=username, username_error=username_error)
     
     if " " in username:
         username_error = "ERROR: No spaces allowed"
-        return render_template("signup.html", username=username, username_error=username_error)
+        # return render_template("signup.html", username=username, username_error=username_error)
     
     if len(username) < 3 or len(username) > 20:
         username_error = "ERROR: User Name length incorrect. Must be > 3 and < 20 characters"
-        return render_template("signup.html", username=username, username_error=username_error)
-
+        # return render_template("signup.html", username=username, username_error=username_error)
     else:
         username_error = ""
 
@@ -41,34 +40,32 @@ def validate():
     if len(password) < 3 or len(password) > 20:
         pass_error = "ERROR: Password length must be > 3 and < 20 characters"
         password = ""
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
+        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
 
     if " " in password:
         pass_error = "ERROR: Passwords cannot contain spaces"
         password = ""
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
+        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error)
         
 # password re-entry MUST match password!
     if passwordv != password:
         passv_error = "Password entries do not match, please re-enter"
         passwordv = ""
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
+        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
     
     if " " in password:
         passv_error = "ERROR: Passwords cannot contain spaces"
         passwordv = ""
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
+        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error)
 
 # email entry validation, optional, entry must have one '@' and a single '.'
-    if ' ' in email:
-        email_error = "ERROR: Not a valid email, No spaces allowed"
     if '@' not in email:
         email_error = "ERROR: Not a valid email"
     if '.' not in email:
         email_error = "ERROR: Not a valid email"
     if len(email) > 0 and (len(email) < 3 or len(email) > 20):
         email_error = "ERROR: Email Length Incorrect, must be > 3 characters and < 20 characters"
-        return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error, email=email, email_error=email_error)
+        # return render_template("signup.html", username=username, username_error=username_error, pass_error=pass_error, passv_error=passv_error, email=email, email_error=email_error)
 
 # if all the above tests are passed and there are no errors, this directs the user to the Welcome page    
     if len(username_error)== 0 and len(pass_error)== 0 and len(email_error)== 0:
